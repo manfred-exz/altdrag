@@ -7,8 +7,10 @@
   (at your option) any later version.
 */
 
+#ifndef UNICODE
 #define UNICODE
 #define _UNICODE
+#endif
 #define _WIN32_WINNT 0x0500
 #define _WIN32_IE 0x0600
 
@@ -33,6 +35,9 @@ HHOOK msghook = NULL;
 
 // Include stuff
 #include "include/error.c"
+
+// Fwd declarations
+int HookSystem();
 
 // Entry point
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR szCmdLine, int iCmdShow) {

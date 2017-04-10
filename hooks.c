@@ -7,8 +7,10 @@
   (at your option) any later version.
 */
 
+#ifndef UNICODE
 #define UNICODE
 #define _UNICODE
+#endif
 #define _WIN32_WINNT 0x0600
 #define COBJMACROS
 
@@ -40,6 +42,8 @@ GUID my_IID_IAudioEndpointVolume = {0x5CDF2C82,0x841E,0x4546,{0x97,0x22,0x0C,0xF
 #define INIT_TIMER    WM_APP+4
 #define FOCUS_TIMER   WM_APP+5
 HWND g_hwnd;
+int HookMouse();
+int UnhookMouse();
 
 // Enumerators
 enum action {ACTION_NONE=0, ACTION_MOVE, ACTION_RESIZE, ACTION_MINIMIZE, ACTION_CENTER, ACTION_ALWAYSONTOP, ACTION_CLOSE, ACTION_LOWER, ACTION_ALTTAB, ACTION_VOLUME, ACTION_TRANSPARENCY};
@@ -205,7 +209,7 @@ int blacklisted(HWND hwnd, struct blacklist *list) {
     CloseHandle(proc);
     PathStripPath(title);
     for (i=0; i < list->length; i++) {
-      if (!wcsicmp(title,list->items[i].title)) {
+      if (!_wcsicmp(title,list->items[i].title)) {
         return 1;
       }
     }
@@ -2308,16 +2312,16 @@ BOOL APIENTRY DllMain(HINSTANCE hInst, DWORD reason, LPVOID reserved) {
       int i;
       for (i=0; buttons[i].key != NULL; i++) {
         GetPrivateProfileString(L"Input", buttons[i].key, buttons[i].def, txt, ARRAY_SIZE(txt), inipath);
-        if      (!wcsicmp(txt,L"Move"))         *buttons[i].ptr = ACTION_MOVE;
-        else if (!wcsicmp(txt,L"Resize"))       *buttons[i].ptr = ACTION_RESIZE;
-        else if (!wcsicmp(txt,L"Minimize"))     *buttons[i].ptr = ACTION_MINIMIZE;
-        else if (!wcsicmp(txt,L"Center"))       *buttons[i].ptr = ACTION_CENTER;
-        else if (!wcsicmp(txt,L"AlwaysOnTop"))  *buttons[i].ptr = ACTION_ALWAYSONTOP;
-        else if (!wcsicmp(txt,L"Close"))        *buttons[i].ptr = ACTION_CLOSE;
-        else if (!wcsicmp(txt,L"Lower"))        *buttons[i].ptr = ACTION_LOWER;
-        else if (!wcsicmp(txt,L"AltTab"))       *buttons[i].ptr = ACTION_ALTTAB;
-        else if (!wcsicmp(txt,L"Volume"))       *buttons[i].ptr = ACTION_VOLUME;
-        else if (!wcsicmp(txt,L"Transparency")) *buttons[i].ptr = ACTION_TRANSPARENCY;
+        if      (!_wcsicmp(txt,L"Move"))         *buttons[i].ptr = ACTION_MOVE;
+        else if (!_wcsicmp(txt,L"Resize"))       *buttons[i].ptr = ACTION_RESIZE;
+        else if (!_wcsicmp(txt,L"Minimize"))     *buttons[i].ptr = ACTION_MINIMIZE;
+        else if (!_wcsicmp(txt,L"Center"))       *buttons[i].ptr = ACTION_CENTER;
+        else if (!_wcsicmp(txt,L"AlwaysOnTop"))  *buttons[i].ptr = ACTION_ALWAYSONTOP;
+        else if (!_wcsicmp(txt,L"Close"))        *buttons[i].ptr = ACTION_CLOSE;
+        else if (!_wcsicmp(txt,L"Lower"))        *buttons[i].ptr = ACTION_LOWER;
+        else if (!_wcsicmp(txt,L"AltTab"))       *buttons[i].ptr = ACTION_ALTTAB;
+        else if (!_wcsicmp(txt,L"Volume"))       *buttons[i].ptr = ACTION_VOLUME;
+        else if (!_wcsicmp(txt,L"Transparency")) *buttons[i].ptr = ACTION_TRANSPARENCY;
         else                                    *buttons[i].ptr = ACTION_NONE;
       }
 
