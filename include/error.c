@@ -75,7 +75,7 @@ void _Error(wchar_t *func, wchar_t *info, int errorcode, wchar_t *file, int line
   UnhookWindowsHookEx(hhk);
   if (response == IDYES) {
     // Copy message to clipboard
-    int size = (wcslen(msg)+1)*sizeof(msg[0]);
+    auto size = (wcslen(msg)+1)*sizeof(msg[0]);
     wchar_t *data = LocalAlloc(LMEM_FIXED, size);
     memcpy(data, msg, size);
     OpenClipboard(NULL);

@@ -24,7 +24,7 @@ void UpdateLanguage() {
   GetPrivateProfileString(L"General", L"Language", L"en-US", txt, ARRAY_SIZE(txt), inipath);
   int i;
   for (i=0; i < ARRAY_SIZE(languages); i++) {
-    if (!wcsicmp(txt,languages[i]->code)) {
+    if (!_wcsicmp(txt,languages[i]->code)) {
       l10n = languages[i];
       break;
     }
