@@ -46,6 +46,7 @@ UINT WM_HIDETRAY = 0;
 UINT WM_OPENCONFIG = 0;
 UINT WM_CLOSECONFIG = 0;
 wchar_t inipath[MAX_PATH];
+int HookSystem();
 
 // Cool stuff
 HINSTANCE hinstDLL = NULL;
@@ -231,9 +232,9 @@ int HookSystem() {
   HOOKPROC procaddr;
   if (!keyhook) {
     // Get address to keyboard hook (beware name mangling)
-    procaddr = (HOOKPROC) GetProcAddress(hinstDLL, "LowLevelKeyboardProc@12");
+    procaddr = (HOOKPROC) GetProcAddress(hinstDLL, "_LowLevelKeyboardProc@12");
     if (procaddr == NULL) {
-      Error(L"GetProcAddress('LowLevelKeyboardProc@12')", L"This probably means that the file hooks.dll is from an old version or corrupt. You can try reinstalling "APP_NAME".", GetLastError());
+      Error(L"GetProcAddress('_LowLevelKeyboardProc@12')", L"This probably means that the file hooks.dll is from an old version or corrupt. You can try reinstalling "APP_NAME".", GetLastError());
       return 1;
     }
     // Set up the keyboard hook
@@ -249,9 +250,9 @@ int HookSystem() {
   GetPrivateProfileString(L"Advanced", L"HookWindows", L"0", txt, ARRAY_SIZE(txt), inipath);
   if (!msghook && _wtoi(txt)) {
     // Get address to message hook (beware name mangling)
-    procaddr = (HOOKPROC) GetProcAddress(hinstDLL, "CallWndProc@12");
+    procaddr = (HOOKPROC) GetProcAddress(hinstDLL, "_CallWndProc@12");
     if (procaddr == NULL) {
-      Error(L"GetProcAddress('CallWndProc@12')", L"This probably means that the file hooks.dll is from an old version or corrupt. You can try reinstalling "APP_NAME".", GetLastError());
+      Error(L"GetProcAddress('_CallWndProc@12')", L"This probably means that the file hooks.dll is from an old version or corrupt. You can try reinstalling "APP_NAME".", GetLastError());
       return 1;
     }
     // Set up the message hook
