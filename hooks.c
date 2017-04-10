@@ -48,7 +48,11 @@ enum resize {RESIZE_NONE=0, RESIZE_TOP, RESIZE_RIGHT, RESIZE_BOTTOM, RESIZE_LEFT
 enum cursor {HAND, SIZENWSE, SIZENESW, SIZENS, SIZEWE, SIZEALL};
 
 // Some variables must be shared so that CallWndProc hooks can access them
+#ifndef _MSC_VER
 #define shareattr __attribute__((section ("shared"), shared))
+#else
+#define shareattr // TODO
+#endif
 
 // Window database
 #define NUMWNDDB 30
@@ -1249,7 +1253,7 @@ __declspec(dllexport) LRESULT CALLBACK LowLevelMouseProc(int nCode, WPARAM wPara
           }
 
           // Function pointer so we only need one for-loop
-          typedef HRESULT WINAPI (*_VolumeStep)(IAudioEndpointVolume*, LPCGUID pguidEventContext);
+          typedef HRESULT (WINAPI *_VolumeStep)(IAudioEndpointVolume*, LPCGUID pguidEventContext);
           _VolumeStep VolumeStep = (_VolumeStep)(pAudioEndpoint->lpVtbl->VolumeStepDown);
           if (delta > 0) {
             VolumeStep = (_VolumeStep)(pAudioEndpoint->lpVtbl->VolumeStepUp);

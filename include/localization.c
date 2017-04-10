@@ -39,7 +39,7 @@ void LoadTranslation(wchar_t *ini) {
   int i;
   for (i=0; i < ARRAY_SIZE(l10n_mapping); i++) {
     // Get pointer to default English string to be used if ini entry doesn't exist
-    wchar_t *def = *(wchar_t**) ((void*)&en_US + ((void*)l10n_mapping[i].str - (void*)&l10n_ini));
+    wchar_t *def = *(wchar_t**) ((char*)(void*)&en_US + ((char*)(void*)l10n_mapping[i].str - (char*)(void*)&l10n_ini));
     GetPrivateProfileString(L"Translation", l10n_mapping[i].name, def, txt, ARRAY_SIZE(txt), ini);
     if (l10n_mapping[i].str == &l10n_ini.about_version) {
       wcscat(txt, L" ");

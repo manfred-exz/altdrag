@@ -7,8 +7,10 @@
   (at your option) any later version.
 */
 
+#ifndef UNICODE
 #define UNICODE
 #define _UNICODE
+#endif
 #define _WIN32_WINNT 0x0600
 #define _WIN32_IE 0x0600
 

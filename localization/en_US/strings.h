@@ -54,13 +54,13 @@ struct strings en_US = {
  /* autosnap3          */ L"+ inside of windows",
  /* language           */ L"Language:",
  /* autostart_box      */ L"Autostart",
- /* autostart          */ L"S&tart "APP_NAME" when logging on",
+ /* autostart          */ L"S&tart " APP_NAME L" when logging on",
  /* autostart_hide     */ L"&Hide tray",
  /* autostart_elevate  */ L"&Elevate to administrator privileges",
  /*       elevate_tip  */ L"Note that a UAC prompt will appear every time you log in, unless you disable UAC completely.",
  /* elevate            */ L"E&levate",
  /* elevated           */ L"Elevated",
- /* elevate_tip        */ L"This will create a new instance of "APP_NAME" which is running with administrator privileges. This allows "APP_NAME" to manage other programs which are running with administrator privileges.\n\nYou will have to approve a UAC prompt from Windows to allow "APP_NAME" to run with administrator privileges.",
+ /* elevate_tip        */ L"This will create a new instance of " APP_NAME L" which is running with administrator privileges. This allows " APP_NAME L" to manage other programs which are running with administrator privileges.\n\nYou will have to approve a UAC prompt from Windows to allow " APP_NAME L" to run with administrator privileges.",
  /* elevation_aborted  */ L"Elevation aborted.",
  /* autosave           */ L"Note: Settings are saved and applied instantly!",
 
@@ -114,7 +114,7 @@ struct strings en_US = {
  /* checkonstartup     */ L"A&utomatically check for updates",
  /* beta               */ L"Check for &beta versions",
  /* checknow           */ L"&Check now",
- /* ini                */ APP_NAME L"'s settings are saved in "APP_NAME".ini. There are a few things that you can only configure by editing the file manually.",
+ /* ini                */ APP_NAME L"'s settings are saved in "APP_NAME L".ini. There are a few things that you can only configure by editing the file manually.",
  /* openini            */ L"Open &ini file",
 
  /* about tab */
@@ -126,5 +126,5 @@ struct strings en_US = {
  /* translation_credit */ L"Translation credit",
 
  /* === misc === */
- /* unhook_error       */ L"There was an error disabling "APP_NAME". This was most likely caused by Windows having already disabled "APP_NAME"'s hooks.\n\nIf this is the first time this has happened, you can safely ignore it and continue using "APP_NAME".\n\nIf this is happening repeatedly, you can read on the website how to prevent this from happening again (look for '"APP_NAME" mysteriously stops working' in the documentation).",
+ /* unhook_error       */ L"There was an error disabling "APP_NAME L". This was most likely caused by Windows having already disabled " APP_NAME L"'s hooks.\n\nIf this is the first time this has happened, you can safely ignore it and continue using " APP_NAME L".\n\nIf this is happening repeatedly, you can read on the website how to prevent this from happening again (look for '" APP_NAME L" mysteriously stops working' in the documentation).",
 };

@@ -50,7 +50,7 @@ void OpenConfig(int startpage) {
     { IDD_ABOUTPAGE,     AboutPageDialogProc },
   };
 
-  PROPSHEETPAGE psp[ARRAY_SIZE(pages)] = {};
+  PROPSHEETPAGE psp[ARRAY_SIZE(pages)] = {0};
   int i;
   for (i=0; i < ARRAY_SIZE(pages); i++) {
     psp[i].dwSize      = sizeof(PROPSHEETPAGE);

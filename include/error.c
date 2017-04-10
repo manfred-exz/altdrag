@@ -7,6 +7,8 @@
   (at your option) any later version.
 */
 
+#include <crtdefs.h>
+
 int showerror = 1;
 
 
