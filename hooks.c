@@ -53,9 +53,9 @@ enum cursor {HAND, SIZENWSE, SIZENESW, SIZENS, SIZEWE, SIZEALL};
 
 // Some variables must be shared so that CallWndProc hooks can access them
 #ifndef _MSC_VER
-#define shareattr __attribute__((section ("shared"), shared))
+  #define shareattr __attribute__((section ("shared"), shared))
 #else
-#define shareattr // TODO
+  #define shareattr
 #endif
 
 // Window database
@@ -74,6 +74,15 @@ struct {
   struct wnddata items[NUMWNDDB];
   struct wnddata *pos;
 } wnddb;
+
+// Snap
+RECT *monitors = NULL;
+int nummonitors = 0;
+RECT *wnds = NULL;
+int numwnds = 0;
+HWND *hwnds = NULL;
+int numhwnds = 0;
+HWND progman = NULL;
 
 // State
 struct {
@@ -110,20 +119,17 @@ struct {
   } mmi;
 } state;
 
+
+#ifdef _MSC_VER
+// Start of shared data
+#pragma data_seg(".shared")
+#endif
+
 struct {
   short shift;
   short snap;
   enum action action;
 } sharedstate shareattr = {0, 0, ACTION_NONE};
-
-// Snap
-RECT *monitors = NULL;
-int nummonitors = 0;
-RECT *wnds = NULL;
-int numwnds = 0;
-HWND *hwnds = NULL;
-int numhwnds = 0;
-HWND progman = NULL;
 
 // Settings
 #define MAXKEYS 10
@@ -153,6 +159,19 @@ struct {
 short sharedsettings_loaded shareattr = 0;
 wchar_t inipath[MAX_PATH] shareattr;
 
+// Cursor data
+HWND cursorwnd shareattr = NULL;
+
+// Msghook data
+enum action msgaction shareattr = ACTION_NONE;
+short unload shareattr = 0;
+
+#ifdef _MSC_VER
+// End of shared data
+#pragma data_seg(".shared")
+#endif
+
+
 // Blacklist (not shared since dynamically allocated)
 struct blacklistitem {
   wchar_t *title;
@@ -170,7 +189,6 @@ struct {
 } settings = {{NULL,0}, {NULL,0}, {NULL,0}};
 
 // Cursor data
-HWND cursorwnd shareattr = NULL;
 HCURSOR cursors[6];
 
 // Hook data
@@ -179,8 +197,6 @@ HHOOK mousehook = NULL;
 
 // Msghook data
 BOOL subclassed = FALSE;
-enum action msgaction shareattr = ACTION_NONE;
-short unload shareattr = 0;
 
 // Error()
 #ifdef DEBUG
