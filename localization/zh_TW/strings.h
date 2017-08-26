@@ -96,7 +96,7 @@ struct strings zh_TW = {
   L"AltDrag 的設定以儲存至 AltDrag.ini。少部份可透過手動編輯此檔案來設定。",
   L"開啟 INI 檔案(&I)",
   L"關於 AltDrag",
-  L"版本 1.0",
+  L"版本 1.1",
   L"作者：Stefan Sundin",
   L"AltDrag 是免費開源的軟體!\n歡迎重新封裝發佈!",
   L"贊助(&D)",
