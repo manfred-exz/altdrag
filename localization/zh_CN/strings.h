@@ -96,7 +96,7 @@ struct strings zh_CN = {
   L"AltDrag的设置保存在AltDrag.ini。有少量配置可以通过手工编辑此文件来更改。",
   L"打开&ini文件",
   L"关于AltDrag",
-  L"版本 1.0",
+  L"版本 1.1",
   L"作者: Stefan Sundin",
   L"AltDrag 是自由和开源软件！\n迎重新发布！",
   L"(&D)捐赠",
