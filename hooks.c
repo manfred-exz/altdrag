@@ -24,6 +24,7 @@
 #include <psapi.h>
 #include <mmdeviceapi.h>
 #include <endpointvolume.h>
+#include <ShellScalingApi.h>
 
 // Stuff missing in MinGW
 CLSID my_CLSID_MMDeviceEnumerator = {0xBCDE0395,0xE52F,0x467C,{0x8E,0x3D,0xC4,0x57,0x92,0x91,0x69,0x2E}};
@@ -771,35 +772,35 @@ void MouseMove() {
       // Move window
       if (pt.x < mon.left+2*AERO_THRESHOLD && pt.y < mon.top+2*AERO_THRESHOLD) {
         // Top left
-        state.wndentry->restore = 1;
-        wndwidth = (mon.right-mon.left)/2;
-        wndheight = (mon.bottom-mon.top)/2;
-        posx = mon.left;
-        posy = mon.top;
+//        state.wndentry->restore = 1;
+//        wndwidth = (mon.right-mon.left)/2;
+//        wndheight = (mon.bottom-mon.top)/2;
+//        posx = mon.left;
+//        posy = mon.top;
       }
       else if (mon.right-2*AERO_THRESHOLD < pt.x && pt.y < mon.top+2*AERO_THRESHOLD) {
         // Top right
-        state.wndentry->restore = 1;
-        wndwidth = max(min((mon.right-mon.left)/2, state.mmi.ptMaxTrackSize.x), state.mmi.ptMinTrackSize.x);
-        wndheight = (mon.bottom-mon.top)/2;
-        posx = mon.right-wndwidth;
-        posy = mon.top;
+//        state.wndentry->restore = 1;
+//        wndwidth = max(min((mon.right-mon.left)/2, state.mmi.ptMaxTrackSize.x), state.mmi.ptMinTrackSize.x);
+//        wndheight = (mon.bottom-mon.top)/2;
+//        posx = mon.right-wndwidth;
+//        posy = mon.top;
       }
       else if (pt.x < mon.left+2*AERO_THRESHOLD && mon.bottom-2*AERO_THRESHOLD < pt.y) {
         // Bottom left
-        state.wndentry->restore = 1;
-        wndwidth = (mon.right-mon.left)/2;
-        wndheight = max(min((mon.bottom-mon.top)/2, state.mmi.ptMaxTrackSize.y), state.mmi.ptMinTrackSize.y);
-        posx = mon.left;
-        posy = mon.bottom-wndheight;
+//        state.wndentry->restore = 1;
+//        wndwidth = (mon.right-mon.left)/2;
+//        wndheight = max(min((mon.bottom-mon.top)/2, state.mmi.ptMaxTrackSize.y), state.mmi.ptMinTrackSize.y);
+//        posx = mon.left;
+//        posy = mon.bottom-wndheight;
       }
       else if (mon.right-2*AERO_THRESHOLD < pt.x && mon.bottom-2*AERO_THRESHOLD < pt.y) {
         // Bottom right
-        state.wndentry->restore = 1;
-        wndwidth = max(min((mon.right-mon.left)/2, state.mmi.ptMaxTrackSize.x), state.mmi.ptMinTrackSize.x);
-        wndheight = max(min((mon.bottom-mon.top)/2, state.mmi.ptMaxTrackSize.y), state.mmi.ptMinTrackSize.y);
-        posx = mon.right-wndwidth;
-        posy = mon.bottom-wndheight;
+//        state.wndentry->restore = 1;
+//        wndwidth = max(min((mon.right-mon.left)/2, state.mmi.ptMaxTrackSize.x), state.mmi.ptMinTrackSize.x);
+//        wndheight = max(min((mon.bottom-mon.top)/2, state.mmi.ptMaxTrackSize.y), state.mmi.ptMinTrackSize.y);
+//        posx = mon.right-wndwidth;
+//        posy = mon.bottom-wndheight;
       }
       else if (pt.y < mon.top+AERO_THRESHOLD && !state.mdiclient) {
         // Top
@@ -835,19 +836,19 @@ void MouseMove() {
       }
       else if (pt.x < mon.left+AERO_THRESHOLD) {
         // Left
-        state.wndentry->restore = 1;
-        wndwidth = (mon.right-mon.left)/2;
-        wndheight = max(min((mon.bottom-mon.top), state.mmi.ptMaxTrackSize.y), state.mmi.ptMinTrackSize.y);
-        posx = mon.left;
-        posy = mon.top+(mon.bottom-mon.top)/2-wndheight/2; // Center vertically (if window has a max height)
+//        state.wndentry->restore = 1;
+//        wndwidth = (mon.right-mon.left)/2;
+//        wndheight = max(min((mon.bottom-mon.top), state.mmi.ptMaxTrackSize.y), state.mmi.ptMinTrackSize.y);
+//        posx = mon.left;
+//        posy = mon.top+(mon.bottom-mon.top)/2-wndheight/2; // Center vertically (if window has a max height)
       }
       else if (mon.right-AERO_THRESHOLD < pt.x) {
         // Right
-        state.wndentry->restore = 1;
-        wndwidth = max(min((mon.right-mon.left)/2, state.mmi.ptMaxTrackSize.x), state.mmi.ptMinTrackSize.x);
-        wndheight = max(min((mon.bottom-mon.top), state.mmi.ptMaxTrackSize.y), state.mmi.ptMinTrackSize.y);
-        posx = mon.right-wndwidth;
-        posy = mon.top+(mon.bottom-mon.top)/2-wndheight/2; // Center vertically (if window has a max height)
+//        state.wndentry->restore = 1;
+//        wndwidth = max(min((mon.right-mon.left)/2, state.mmi.ptMaxTrackSize.x), state.mmi.ptMinTrackSize.x);
+//        wndheight = max(min((mon.bottom-mon.top), state.mmi.ptMaxTrackSize.y), state.mmi.ptMinTrackSize.y);
+//        posx = mon.right-wndwidth;
+//        posy = mon.top+(mon.bottom-mon.top)/2-wndheight/2; // Center vertically (if window has a max height)
       }
       else if (state.wndentry->restore) {
         // Restore original window size

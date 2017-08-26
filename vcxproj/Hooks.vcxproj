@@ -23,7 +23,7 @@
     <ProjectGuid>{B2F97161-A8A0-4C30-B03A-BB0D8BA1D77B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Hooks</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.10586.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -72,11 +72,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <TargetName>hooks</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <TargetName>hooks_64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -92,10 +90,11 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;HOOKS_EXPORTS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/FS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>shlwapi.lib;comctl32.lib;user32.lib;psapi.lib;kernel32.lib;ole32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;comctl32.lib;psapi.lib;Shcore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(ProjectDir)\..\</AdditionalIncludeDirectories>
@@ -127,12 +126,18 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;HOOKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/FS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>shlwapi.lib;comctl32.lib;psapi.lib;Shcore.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\</AdditionalIncludeDirectories>
+    </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -148,6 +153,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>shlwapi.lib;comctl32.lib;user32.lib;psapi.lib;kernel32.lib;ole32.lib;advapi32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
